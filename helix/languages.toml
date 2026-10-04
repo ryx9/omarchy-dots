@@ -1,0 +1,133 @@
+############################################
+# PYTHON (BasedPyright + Ruff)
+############################################
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py","pyi","py3","pyw",".pythonstartup",".pythonrc"]
+shebangs = ["python"]
+roots = [".", "pyproject.toml", "pyrightconfig.json"]
+comment-token = "#"
+language-servers = ["pyright", "ruff"]
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+
+[language.formatter]
+command = "black"
+args = [
+  "-",
+  "--quiet",
+  "--line-length=88"
+]
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright.config]
+reportMissingTypeStubs = false
+
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+autoImportCompletions = true
+
+[language-server.ruff]
+command = "ruff"
+args=["server"]
+
+[language-server.ruff.config]
+settings = {args = []}
+############################################
+# JAVASCRIPT / TYPESCRIPT
+############################################
+
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[language-server.typescript-language-server.config.typescript.tsserver]
+logVerbosity = "off"
+maxTsServerMemory = 4096
+
+[language-server.typescript-language-server.config.typescript.preferences]
+includeCompletionsForModuleExports = true
+includeCompletionsWithSnippetText = true
+importModuleSpecifierPreference = "non-relative"
+autoImportSuggestions = true
+quotePreference = "auto"
+
+[language-server.typescript-language-server.config.typescript.suggest]
+includeCompletionsForImportStatements = true
+
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "eslint"]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "eslint"]
+auto-format = true
+
+
+############################################
+# C / C++
+############################################
+
+[language-server.clangd]
+command = "clangd"
+args = [
+  "--background-index",
+  "--clang-tidy",
+  "--completion-style=detailed",
+  "--header-insertion=iwyu"
+]
+
+[[language]]
+name = "cpp"
+language-servers = ["clangd"]
+auto-format = true
+
+[[language]]
+name = "c"
+language-servers = ["clangd"]
+auto-format = true
+
+
+############################################
+# RUST
+############################################
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+checkOnSave = { command = "clippy" }
+cargo = { allFeatures = true }
+procMacro = { enable = true }
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer"]
+auto-format = true
+
+
+############################################
+# JSON
+############################################
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+auto-format = true

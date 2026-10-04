@@ -1,0 +1,196 @@
+theme = "base16_default"
+
+[editor]
+true-color = true
+bufferline = "always"
+line-number = "relative"
+rulers = [120]
+scroll-lines = 1
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
+[editor.whitespace.characters]
+tabpad = "·"
+
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = true
+wrap-indicator = "↪ "
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+center = ["diagnostics"]
+right = ["selections", "register", "position", "file-encoding"]
+
+#################################################
+# NORMAL MODE
+#################################################
+
+[keys.normal]
+
+# Core fix: restore expected behavior
+i = "insert_mode"
+
+esc = ["collapse_selection", "keep_primary_selection"]
+
+# Navigation (Vim standard)
+h = "move_char_left"
+j = "move_line_down"
+k = "move_line_up"
+l = "move_char_right"
+
+# Buffer Navigation
+H = "goto_previous_buffer"
+L = "goto_next_buffer"
+A-left = "goto_previous_buffer"
+A-right = "goto_next_buffer"
+
+# Words
+w = "move_next_word_start"
+e = "move_prev_word_start"
+W = "move_next_long_word_start"
+E = "move_prev_long_word_start"
+
+C-left = ["move_prev_word_start", "collapse_selection"]
+C-right = ["move_next_word_start", "collapse_selection"]
+
+# Line movement
+
+# Function navigation
+tab = "goto_next_function"
+S-tab = "goto_prev_function"
+
+# Line ends
+end = "goto_line_end_newline"
+C-end = "goto_line_end"
+
+# File tools
+C-e = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
+
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+# Selection / edit helpers
+C-c = "toggle_comments"
+
+del = [
+  "move_next_word_end",
+  "move_prev_word_end",
+  "move_next_word_end",
+  "delete_selection_noyank"
+]
+
+backspace = ["delete_char_backward"]
+
+A-backspace = [
+  "move_prev_word_start",
+  "delete_selection"
+]
+
+# Line operations
+A-down = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "paste_after"
+]
+
+A-up = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before"
+]
+
+p = "paste_before"
+C-v = "paste_clipboard_before"
+A-y = "yank_to_clipboard"
+
+# Save / quit
+C-s = ":w"
+C-q = ":q"
+A-q = ":q!"
+
+# Case
+a = "switch_to_lowercase"
+A = "switch_to_uppercase"
+C-a = "switch_case"
+
+# Delete word to insert
+C = [
+  "move_next_word_end",
+  "delete_selection",
+  "insert_mode"
+]
+
+# Visual line
+X = "extend_line_above"
+
+C-x = [
+  "ensure_selections_forward",
+  "extend_to_line_end"
+]
+
+# Open lines
+o = ["open_above", "normal_mode"]
+O = ["open_below", "normal_mode"]
+
+#################################################
+# INSERT MODE
+#################################################
+
+[keys.insert]
+
+# Optional navigation (kept minimal, no conflicts)
+C-h = "move_char_left"
+C-j = "move_line_down"
+C-k = "move_line_up"
+C-l = "move_char_right"
+
+C-space = "completion"
+
+C-s = ["normal_mode", ":w"]
+C-q = ":q"
+C-u = "undo"
+C-o = "open_above"
+C-p = "paste_before"
+C-v = "paste_clipboard_before"
+
+C-y = "yank"
+C-c = "toggle_comments"
+
+#################################################
+# SELECT MODE
+#################################################
+
+[keys.select]
+
+esc = [
+  "collapse_selection",
+  "keep_primary_selection",
+  "normal_mode"
+]
+
+h = "extend_char_left"
+j = "extend_line_down"
+k = "extend_line_up"
+l = "extend_char_right"
+
+w = "extend_next_word_start"
+e = "extend_prev_word_start"
+
+C-c = "toggle_comments"
+C-_ = "toggle_comments"
+
+A-y = ["yank_to_clipboard", "collapse_selection"]
+
+A-q = ":q!"
+C-q = ":q"

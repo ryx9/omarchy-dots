@@ -1,0 +1,135 @@
+# Pure Two-Six Yazi theme (swamp-ink rewrite, no transparency)
+
+# : Manager {{{
+
+[manager]
+cwd = { fg = "#6F6E4F" }
+
+hovered         = { reversed = true }
+preview_hovered = { underline = true }
+
+find_keyword  = { fg = "#A87400", bold = true, italic = true, underline = true }
+find_position = { fg = "#A87400", bg = "#2A2238", bold = true, italic = true }
+
+marker_copied   = { fg = "#6F6E4F", bg = "#6F6E4F" }
+marker_cut      = { fg = "#7A6A58", bg = "#7A6A58" }
+marker_marked   = { fg = "#A87400", bg = "#A87400" }
+marker_selected = { fg = "#6F6E4F", bg = "#6F6E4F" }
+
+tab_active   = { reversed = true }
+tab_inactive = {}
+
+count_copied   = { fg = "#F1E3D1", bg = "#6F6E4F" }
+count_cut      = { fg = "#F1E3D1", bg = "#7A6A58" }
+count_selected = { fg = "#F1E3D1", bg = "#A87400" }
+
+border_symbol = "│"
+border_style  = { fg = "#7A6A58" }
+
+# : }}}
+
+
+# : Status {{{
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#2A2238", bg = "#2A2238" }
+
+mode_normal = { fg = "#F1E3D1", bg = "#6F6E4F", bold = true }
+mode_select = { fg = "#F1E3D1", bg = "#A87400", bold = true }
+mode_unset  = { fg = "#F1E3D1", bg = "#2A2238", bold = true }
+
+progress_label  = { fg = "#D9C6AF", bold = true }
+progress_normal = { fg = "#6F6E4F", bg = "#2A2238" }
+progress_error  = { fg = "#7A2A2A", bg = "#2A2238" }
+
+permissions_t = { fg = "#6F6E4F" }
+permissions_r = { fg = "#7A6A58" }
+permissions_w = { fg = "#A87400" }
+permissions_x = { fg = "#6F6E4F" }
+permissions_s = { fg = "#7A6A58" }
+
+# : }}}
+
+
+# : Select {{{
+
+[select]
+border   = { fg = "#6F6E4F" }
+active   = { fg = "#A87400", bold = true }
+inactive = {}
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border   = { fg = "#7A6A58" }
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[completion]
+border = { fg = "#6F6E4F" }
+
+# : }}}
+
+
+# : Tasks {{{
+
+[tasks]
+border  = { fg = "#7A6A58" }
+hovered = { fg = "#A87400", underline = true }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+mask      = { bg = "#2A2238" }
+cand      = { fg = "#A87400" }
+rest      = { fg = "#7A6A58" }
+desc      = { fg = "#6F6E4F" }
+separator = "  "
+separator_style = { fg = "#7A6A58" }
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+on      = { fg = "#A87400" }
+run     = { fg = "#6F6E4F" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#7A6A58", bg = "#2A2238" }
+
+# : }}}
+
+
+# : Notify {{{
+
+[notify]
+title_info  = { fg = "#6F6E4F" }
+title_warn  = { fg = "#A87400" }
+title_error = { fg = "#7A2A2A" }
+
+# : }}}
+
+
+# : Filetypes {{{
+
+[filetype]
+rules = [
+	{ mime = "image/*", fg = "#6F6E4F" },
+	{ mime = "{audio,video}/*", fg = "#7A6A58" },
+	{ mime = "application/*zip", fg = "#A87400" },
+	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#6F6E4F" },
+	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#7A6A58" }
+]

@@ -1,0 +1,70 @@
+# ==============================================================================
+# YAZI CONFIGURATION
+# ==============================================================================
+[mgr]
+show_hidden = true
+sort_by = "natural"
+
+# ------------------------------------------------------------------------------
+# OPENERS
+# ------------------------------------------------------------------------------
+[opener]
+
+pdf = [
+    { run = 'okular "$1"', desc = "Okular", orphan = true, for = "linux" }
+]
+
+office = [
+    { run = 'onlyoffice-desktopeditors "$1"', desc = "OnlyOffice", orphan = true, for = "linux" }
+]
+
+video = [
+    { run = 'haruna "$1"', desc = "Haruna", orphan = true, for = "linux" },
+    { run = 'mpv "$1"', desc = "mpv", orphan = true, for = "linux" }
+]
+
+image = [
+    { run = 'mpv "$1"', desc = "mpv", orphan = true, for = "linux" }
+]
+
+text = [
+    { run = 'helix "$1"', desc = "Helix", block = true, for = "linux" }
+]
+
+archive = [
+    { run = '7z x "$1"', desc = "Extract", block = true, for = "linux" }
+]
+
+default = [
+    { run = 'xdg-open "$1"', desc = "Open", orphan = true, for = "linux" }
+]
+
+# ------------------------------------------------------------------------------
+# OPEN RULES
+# ------------------------------------------------------------------------------
+[open]
+prepend_rules = [
+
+    # PDFs
+    { mime = "application/pdf", use = [ "pdf" ] },
+
+    # Office files
+    { url = "*.{doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp}", use = [ "office" ] },
+
+    # Videos
+    { mime = "video/*", use = [ "video" ] },
+
+    # Images
+    { mime = "image/*", use = [ "image" ] },
+
+    # Text / code
+    { mime = "text/*", use = [ "text" ] },
+    { url = "*.{json,toml,yaml,yml,md,c,cpp,h,hpp,rs,py,js,ts,tsx,jsx,html,css,sh}", use = [ "text" ] },
+
+    # Archives
+    { mime = "application/zip", use = [ "archive" ] },
+    { url = "*.{zip,7z,rar,tar,gz,bz2,xz,tgz,tar.gz}", use = [ "archive" ] },
+
+    # Fallback
+    { url = "*", use = [ "default" ] }
+]
