@@ -22,8 +22,8 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 7,
-			passes = 3,
+			size = 4,
+			passes = 4,
 		},
 		-- Dim unfocused windows (0.0 = no dim, 1.0 = fully dimmed).
 		dim_inactive = true,
