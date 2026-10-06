@@ -25,7 +25,7 @@
           "type": "path"
         },
         {
-          "background": "black",
+          "background": "orange",
           "foreground": "white",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",

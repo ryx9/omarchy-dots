@@ -2,15 +2,17 @@
 
 pcall(dofile, os.getenv("HOME") .. "/.config/omarchy/plugins/omacale.bar/omacale.lua")
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#general
+hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
+hl.env("XCURSOR_SIZE", "24")
 hl.config({
 	general = {
 		-- No gaps between windows or borders.
-		gaps_in = 10,
-		gaps_out = 30,
+		gaps_in = 5,
+		gaps_out = 20,
 		border_size = 2,
 
 		-- Change to niri-like side-scrolling layout.
-		layout = "dwindle",
+		layout = "scrolling",
 	},
 })
 
@@ -22,8 +24,8 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 4,
-			passes = 4,
+			size = 1,
+			passes = 5,
 		},
 		-- Dim unfocused windows (0.0 = no dim, 1.0 = fully dimmed).
 		dim_inactive = true,
@@ -38,7 +40,7 @@ hl.window_rule({
 	match = {
 		class = "^org\\.gnome\\.Nautilus$",
 	},
-	opacity = "0.99 override 0.99 override",
+	opacity = "0.75 override 0.75 override",
 })
 --   animations = {
 --     -- Disable all animations.
@@ -50,7 +52,7 @@ hl.window_rule({
 hl.config({
 	layout = {
 		-- Avoid overly wide single-window layouts on wide screens.
-		single_window_aspect_ratio = { 3, 4 },
+		single_window_aspect_ratio = { 4, 3 },
 	},
 })
 
@@ -58,6 +60,6 @@ hl.config({
 hl.config({
 	scrolling = {
 		-- See only one column per screen instead of two.
-		column_width = 0.97,
+		column_width = 0.57,
 	},
 })
