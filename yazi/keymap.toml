@@ -1,51 +1,176 @@
-# Keymaps
+# ==============================================================================
+# YAZI KEYMAP — Fixed & Enhanced with Multi-Pane + Tab Shifting
+# ==============================================================================
 
+# ── Tab management ─────────────────────────────────────────────────────────────
 
-[[manager.prepend_keymap]]
-on   = [ "T" ]
-run  = 'close'
-desc = "close tab"
+[[mgr.prepend_keymap]]
+on   = ["T"]
+run  = "tab_close"
+desc = "Close current tab"
 
-[[manager.prepend_keymap]]
-on   = [ "H" ]
-run  = 'tab_swap -1'
-desc = "swap the to one space back"
+[[mgr.prepend_keymap]]
+on   = ["<C-t>"]
+run  = "tab_create --current"
+desc = "New tab (same dir)"
 
-[[manager.prepend_keymap]]
-on   = [ "L" ]
-run  = 'tab_swap +1'
-desc = "swap the to one space forward"
+[[mgr.prepend_keymap]]
+on   = ["H"]
+run  = "tab_swap -1"
+desc = "Shift tab left (swap with previous)"
 
+[[mgr.prepend_keymap]]
+on   = ["L"]
+run  = "tab_swap 1"
+desc = "Shift tab right (swap with next)"
 
-[[manager.prepend_keymap]]
-on   = [ "<C-h>" ]
-run  = 'help'
-desc = "open help"
+[[mgr.prepend_keymap]]
+on   = ["["]
+run  = "tab_switch -1 --relative"
+desc = "Go to previous tab"
 
-[[manager.prepend_keymap]]
-on   = [ "u" ]
-run  = 'undo'
-desc = "for undo the last operation"
+[[mgr.prepend_keymap]]
+on   = ["]"]
+run  = "tab_switch 1 --relative"
+desc = "Go to next tab"
 
-[[manager.prepend_keymap]]
-on   = [ "U" ]
-run  = 'redo'
-desc = "for redo the last operation"
+# Number-key tab jumping (1–9)
+[[mgr.prepend_keymap]]
+on  = ["1"]
+run = "tab_switch 0"
+desc = "Switch to tab 1"
 
-# example
+[[mgr.prepend_keymap]]
+on  = ["2"]
+run = "tab_switch 1"
+desc = "Switch to tab 2"
 
-#[[manager.prepend_keymap]]
-#on   = [ "<C-a>" ]
-#run  = 'my-fev-command1'
-#desc = "Just for test!"
+[[mgr.prepend_keymap]]
+on  = ["3"]
+run = "tab_switch 2"
+desc = "Switch to tab 3"
 
-#[[manager.prepend_keymap]]
-#on  = [ "<C-b>" ]
-#run = 'my-fev-command2'
+[[mgr.prepend_keymap]]
+on  = ["4"]
+run = "tab_switch 3"
+desc = "Switch to tab 4"
 
-#[[manager.append_keymap]]
-#on  = [ "<C-c>" ]
-#run = 'my-fev-command3'
+[[mgr.prepend_keymap]]
+on  = ["5"]
+run = "tab_switch 4"
+desc = "Switch to tab 5"
 
-#For more modifications please visit : 
-#https://yazi-rs.github.io/docs/configuration/keymap
+# ── Undo / Redo ────────────────────────────────────────────────────────────────
+
+[[mgr.prepend_keymap]]
+on   = ["u"]
+run  = "undo"
+desc = "Undo last operation"
+
+[[mgr.prepend_keymap]]
+on   = ["U"]
+run  = "redo"
+desc = "Redo last operation"
+
+# ── Help ───────────────────────────────────────────────────────────────────────
+
+[[mgr.prepend_keymap]]
+on   = ["?"]
+run  = "help"
+desc = "Open keybinding help"
+
+# ── Navigation ─────────────────────────────────────────────────────────────────
+
+[[mgr.prepend_keymap]]
+on   = ["g", "h"]
+run  = "cd ~"
+desc = "Go to home directory"
+
+[[mgr.prepend_keymap]]
+on   = ["g", "/"]
+run  = "cd /"
+desc = "Go to root"
+
+[[mgr.prepend_keymap]]
+on   = ["g", "t"]
+run  = "cd /tmp"
+desc = "Go to /tmp"
+
+# ── Hidden files ───────────────────────────────────────────────────────────────
+
+[[mgr.prepend_keymap]]
+on   = ["."]
+run  = "hidden toggle"
+desc = "Toggle hidden files"
+
+# ── Selection helpers ──────────────────────────────────────────────────────────
+
+[[mgr.prepend_keymap]]
+on   = ["<C-a>"]
+run  = "toggle_all --state=on"
+desc = "Select all files"
+
+[[mgr.prepend_keymap]]
+on   = ["<C-d>"]
+run  = "escape --select"
+desc = "Deselect all"
+
+[[mgr.prepend_keymap]]
+on   = ["<Space>"]
+run  = ["toggle", "arrow 1"]
+desc = "Toggle selection and move down"
+
+# ── Editing / opening ──────────────────────────────────────────────────────────
+[[mgr.prepend_keymap]]
+on   = ["e"]
+run  = "open"
+desc = "Open highlighted file (text files use Neovim)"
+
+# ── Shell integration ──────────────────────────────────────────────────────────
+
+[[mgr.prepend_keymap]]
+on   = ["<C-s>"]
+run  = "plugin shell --args='fish'"
+desc = "Drop to fish shell"
+
+[[mgr.prepend_keymap]]
+on   = ["<C-f>"]
+run  = "search --via=fd"
+desc = "Search with fd"
+
+# ── Sorting ────────────────────────────────────────────────────────────────────
+
+[[mgr.prepend_keymap]]
+on   = [",", "s"]
+run  = "sort size --dir-first"
+desc = "Sort by size"
+
+[[mgr.prepend_keymap]]
+on   = [",", "n"]
+run  = "sort natural --dir-first"
+desc = "Sort naturally"
+
+[[mgr.prepend_keymap]]
+on   = [",", "m"]
+run  = "sort modified --dir-first"
+desc = "Sort by modified time"
+
+[[mgr.prepend_keymap]]
+on   = [",", "e"]
+run  = "sort extension --dir-first"
+desc = "Sort by extension"
+
+[[mgr.prepend_keymap]]
+on   = [",", "r"]
+run  = "sort --reverse"
+desc = "Toggle reverse sort"
+
+[[mgr.prepend_keymap]]
+on   = [";"]
+run  = "plugin shell --args='fish'"
+desc = "Open fish shell"
+
+[[mgr.prepend_keymap]]
+on   = [":"]
+run  = "plugin shell --args='fish --block'"
+desc = "Open fish shell (block)"

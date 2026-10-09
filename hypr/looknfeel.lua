@@ -24,8 +24,8 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 1,
-			passes = 5,
+			size = 13,
+			passes = 2,
 		},
 		-- Dim unfocused windows (0.0 = no dim, 1.0 = fully dimmed).
 		dim_inactive = true,
@@ -40,7 +40,7 @@ hl.window_rule({
 	match = {
 		class = "^org\\.gnome\\.Nautilus$",
 	},
-	opacity = "0.75 override 0.75 override",
+	opacity = "0.65 override 0.65 override",
 })
 --   animations = {
 --     -- Disable all animations.
