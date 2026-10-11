@@ -6,15 +6,15 @@
       "newline": true,
       "segments": [
         {
-          "background": "red",
-          "foreground": "white",
+          "background": "yellow",
+          "foreground": "black",
           "leading_diamond": "\ue0b6",
           "style": "diamond",
           "template": "{{ .UserName }} ",
           "type": "session"
         },
         {
-          "background": "blue",
+          "background": "cyan",
           "foreground": "white",
           "powerline_symbol": "\ue0b0",
           "options": {
